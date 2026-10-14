@@ -2,9 +2,15 @@
 
 两个独立应用、一个 Casdoor 身份中心：Booking 使用 Vue 3 + Spring Boot，Invoice 使用 Vue 3 + Node.js。通过 OIDC Authorization Code + PKCE 实现跨域 SSO。
 
+## 无需绑卡的试玩部署
+
+使用 **GitHub Codespaces**：在仓库点击 **Code → Codespaces → Create codespace on main**。开发容器会自动构建和启动三个服务；将 8000、8080、8081 转发端口设为 Public 后，可通过 HTTPS 链接给外部用户测试。
+
+详细步骤、测试账号位置和免费额度限制见 [CODESPACES.md](CODESPACES.md)。这是按需运行的临时演示，Codespace 停止后链接暂停。Docker 构建与公网 SSO 尚待创建 Codespace 后实际验证。
+
 ## 当前状态
 
-已准备源码和部署配置；公网部署与真实 Casdoor 端到端登录验证尚未完成。以之后发布的实际试玩地址和验证记录为准。
+源码已提交 GitHub，原有本地检查通过。Render 免费服务创建请求返回付款信息要求，因此不再继续 Render 部署；已增加无需绑卡的 Codespaces 配置。公网部署与真实 Casdoor 端到端登录验证尚未完成。
 
 ## 试玩流程
 

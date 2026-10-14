@@ -21,6 +21,10 @@ Deployment status:
 
 - GitHub write permission was verified by a successful file commit on 2026-10-14 after reconnecting.
 - Render workspace Jenkin Tang's Workspace (tea-csppthl6l47c738gmkpg) was confirmed by the user.
-- Public deployment and real-browser SSO verification remain in progress.
+- Render returned HTTP 402 Payment information is required for the Free-plan request. No Render services were created; the user explicitly declined binding a card.
+- Added a Codespaces development container, automatic Docker Compose startup and private configuration generation.
+- Startup script shell syntax passed. Configuration generation/restart tests: 2 passed. Casdoor bootstrap test: passed again.
+- The no-card Codespaces path uses a private local PostgreSQL container with persistent workspace data; the Neon project is retained but not used for this path.
+- Codespace creation, Docker builds, public-port availability and real-browser SSO verification remain pending.
 
 No credentials are included in this source package.

@@ -1,0 +1,19 @@
+{
+  "name": "Casdoor SSO Playground (no-card demo)",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "forwardPorts": [8000, 8080, 8081],
+  "portsAttributes": {
+    "8000": { "label": "Casdoor Login", "onAutoForward": "notify" },
+    "8080": { "label": "Booking App A", "onAutoForward": "notify" },
+    "8081": { "label": "Invoice App B", "onAutoForward": "notify" }
+  },
+  "postCreateCommand": "bash scripts/start-codespaces.sh",
+  "postStartCommand": "bash scripts/start-codespaces.sh",
+  "remoteUser": "vscode",
+  "hostRequirements": { "cpus": 2, "memory": "4gb" }
+}

@@ -7,3 +7,4 @@ casdoor/init_data.json
 *.log
 __pycache__/
 *.pyc
+.demo/
