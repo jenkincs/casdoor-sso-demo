@@ -1,0 +1,75 @@
+# Reproducible configuration. Deployment secrets are supplied outside Git.
+services:
+  - type: web
+    name: jenkin-sso-casdoor
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./casdoor/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: CASDOOR_URL
+        sync: false
+      - key: BOOKING_URL
+        sync: false
+      - key: INVOICE_URL
+        sync: false
+      - key: BOOKING_CLIENT_ID
+        value: sso-booking
+      - key: INVOICE_CLIENT_ID
+        value: sso-invoice
+      - key: ADMIN_CLIENT_ID
+        value: sso-admin
+      - key: BOOKING_CLIENT_SECRET
+        sync: false
+      - key: INVOICE_CLIENT_SECRET
+        sync: false
+      - key: ADMIN_CLIENT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: DEMO_PASSWORD
+        sync: false
+  - type: web
+    name: jenkin-sso-booking
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./booking/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: CASDOOR_URL
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: OTHER_APP_URL
+        sync: false
+      - key: CLIENT_ID
+        value: sso-booking
+      - key: CLIENT_SECRET
+        sync: false
+  - type: web
+    name: jenkin-sso-invoice
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./invoice/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: CASDOOR_URL
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: OTHER_APP_URL
+        sync: false
+      - key: CLIENT_ID
+        value: sso-invoice
+      - key: CLIENT_SECRET
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true

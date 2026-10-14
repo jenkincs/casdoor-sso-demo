@@ -1,0 +1,34 @@
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      timeout: 12h
+      cookie:
+        name: booking.sid
+        http-only: true
+        secure: ${COOKIE_SECURE:true}
+        same-site: lax
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          casdoor:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_post
+            redirect-uri: ${PUBLIC_URL}/login/oauth2/code/casdoor
+            scope: openid,profile,email
+        provider:
+          casdoor:
+            issuer-uri: ${CASDOOR_URL}
+            authorization-uri: ${CASDOOR_URL}/login/oauth/authorize
+            token-uri: ${CASDOOR_URL}/api/login/oauth/access_token
+            user-info-uri: ${CASDOOR_URL}/api/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: ${CASDOOR_URL}/.well-known/jwks
+demo:
+  public-url: ${PUBLIC_URL}
+  other-app-url: ${OTHER_APP_URL}
